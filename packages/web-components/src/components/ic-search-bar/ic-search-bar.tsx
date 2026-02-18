@@ -124,7 +124,7 @@ export class SearchBar {
   @Prop() disabled = false;
   @Watch("disabled")
   watchDisabledHandler(): void {
-    removeDisabledFalse(this.disabled, this.el as HTMLElement);
+    removeDisabledFalse(this.disabled, this.el as unknown as HTMLElement);
   }
 
   /**
@@ -467,7 +467,7 @@ export class SearchBar {
   componentWillLoad(): void {
     this.setInputValue(this.value);
 
-    removeDisabledFalse(this.disabled, this.el as HTMLElement);
+    removeDisabledFalse(this.disabled, this.el as unknown as HTMLElement);
 
     this.updateSearchButtonType();
   }
@@ -812,7 +812,7 @@ export class SearchBar {
     const disabledMode = readonly || disabled;
 
     const describedBy = getInputDescribedByText(
-      this.el,
+      this.el as unknown as HTMLElement,
       inputId,
       helperText !== "",
       false
@@ -841,7 +841,12 @@ export class SearchBar {
       labelField
     );
 
-    renderHiddenInput(this.el as HTMLElement, value, name, disabledMode);
+    renderHiddenInput(
+      this.el as unknown as HTMLElement,
+      value,
+      name,
+      disabledMode
+    );
 
     return (
       <Host
@@ -932,8 +937,8 @@ export class SearchBar {
                 onKeyDown={this.handleClear}
                 type={"button"}
                 variant="icon-tertiary"
-                theme={clearButtonFocused ? "light" : "dark"}
-              ></ic-button>
+                {...(theme !== "inherit" ? { theme } : {})}
+              />
               <div class="divider"></div>
             </div>
             <div
@@ -962,8 +967,8 @@ export class SearchBar {
                 onKeyDown={this.handleSubmitSearchKeyDown}
                 type={searchButtonType}
                 variant="icon-tertiary"
-                theme={searchSubmitFocused ? "light" : "dark"}
-              ></ic-button>
+                {...(theme !== "inherit" ? { theme } : {})}
+              />
             </div>
           </ic-input-component-container>
           <div
@@ -996,7 +1001,7 @@ export class SearchBar {
                 onMenuStateChange={this.handleMenuChange}
                 onMenuOptionId={this.handleMenuOptionHighlight}
                 onRetryButtonClicked={this.handleRetry}
-                parentEl={this.el as HTMLElement}
+                parentEl={this.el as unknown as HTMLElement}
                 value={value}
                 labelField={labelField}
                 valueField={valueField}
