@@ -937,7 +937,7 @@ export class SearchBar {
                 onKeyDown={this.handleClear}
                 type={"button"}
                 variant="icon-tertiary"
-                {...(theme !== "inherit" ? { theme } : {})}
+                theme={clearButtonFocused ? "light" : "inherit"}
               />
               <div class="divider"></div>
             </div>
@@ -967,7 +967,7 @@ export class SearchBar {
                 onKeyDown={this.handleSubmitSearchKeyDown}
                 type={searchButtonType}
                 variant="icon-tertiary"
-                {...(theme !== "inherit" ? { theme } : {})}
+                theme={searchSubmitFocused ? "light" : "inherit"}
               />
             </div>
           </ic-input-component-container>
