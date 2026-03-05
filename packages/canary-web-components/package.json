@@ -1,6 +1,6 @@
 {
   "name": "@ukic/canary-web-components",
-  "version": "3.0.0-canary.37",
+  "version": "3.0.0-canary.36",
   "description": "A web component UI library compiled with StencilJS",
   "bugs": {
     "url": "https://github.com/mi6/ic-ui-kit/issues",
